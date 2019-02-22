@@ -1,0 +1,18 @@
+{
+  "name": "node_practice",
+  "version": "1.0.0",
+  "description": "practice in node.js",
+  "repository": "git@github.com:danieljanderson/node_kata.git",
+  "private": false,
+  "scripts": {
+    "test": "NODE_ENV=test && mocha ./**/*.test.js"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "daniel anderson",
+  "license": "MIT"
+}
