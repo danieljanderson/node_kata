@@ -27,7 +27,7 @@ const assert = require('assert');
 // test suite
 describe('Fizz Buzz', function() {
   // individual test
-  it('', function() {
-    assert.equal(false, true)
+  it('Create Fizz Buzz interface', function() {
+    // TODO: FIRST TEST
   });
 });
