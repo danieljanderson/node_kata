@@ -22,12 +22,54 @@ E - Exercise Exception Behavior
 S - Simple
 */
 
-const assert = require('assert');
+const assert = require('assert')
+const FizzBuzz = require('./fizz-buzz')
 
 // test suite
 describe('Fizz Buzz', function() {
   // individual test
   it('Create Fizz Buzz interface', function() {
     // TODO: FIRST TEST
-  });
-});
+    const expected = ['1']
+    const actual = FizzBuzz.fizzBuzz(1)
+    assert.deepEqual(expected, actual)
+  })
+  it('Create Fizz Buzz sequence', function() {
+    const expected = ['1', '2']
+    const actual = FizzBuzz.fizzBuzz(2)
+    assert.deepEqual(expected, actual)
+  })
+  it('Create Fizz Buzz Fizz', function() {
+    const expected = ['1', '2', 'Fizz']
+    const actual = FizzBuzz.fizzBuzz(3)
+    assert.deepEqual(expected, actual)
+  })
+  it('Create Fizz Buzz Buzz', function() {
+    const expected = ['1', '2', 'Fizz', '4', 'Buzz']
+    const actual = FizzBuzz.fizzBuzz(5)
+    assert.deepEqual(expected, actual)
+  })
+
+  it('Example Fizz Buzz', function() {
+    const expected = [
+      '1',
+      '2',
+      'Fizz',
+      '4',
+      'Buzz',
+      'Fizz',
+      '7',
+      '8',
+      'Fizz',
+      'Buzz',
+      '11',
+      'Fizz',
+      '13',
+      '14',
+      'FizzBuzz',
+    ]
+    const actual = FizzBuzz.fizzBuzz(15)
+
+    assert.deepEqual(expected, actual)
+  })
+})
