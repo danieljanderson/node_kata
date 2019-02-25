@@ -1,0 +1,7 @@
+{
+    "debug.node.autoAttach": "on",
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5",
+    "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "javascript.format.placeOpenBraceOnNewLineForFunctions": true
+}
