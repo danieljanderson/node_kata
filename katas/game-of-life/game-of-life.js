@@ -28,7 +28,7 @@ class GameOfLife {
     for (let i = 0; i < y; i++) {
       const row = []
       for (let n = 0; n < x; n++) {
-        const column = ['.']
+        const column = [boardLines[i][n]]
         row.push(column)
       }
       board.push(row)
