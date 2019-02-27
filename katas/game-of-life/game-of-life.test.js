@@ -58,9 +58,54 @@ describe('Game of Life', function() {
   it('Create Game of Life one alive cell', function() {
     // ARRANGE
     // 1 1
-    // *
+    // .
     const expected = '1 1\n.'
     const gameOfLife = new GameOfLife('1 1\n*')
+    // ACT
+    const actual = gameOfLife.next()
+    // ASSERT
+    assert.deepEqual(expected, actual)
+  })
+  it('Create Game of Life two dead cell', function() {
+    // ARRANGE
+    // 1 2
+    // ..
+    const expected = '1 2\n..'
+    const gameOfLife = new GameOfLife('1 2\n..')
+    // ACT
+    const actual = gameOfLife.next()
+    // ASSERT
+    assert.deepEqual(expected, actual)
+  })
+  it('Create Game of Life one dead cell and one alive', function() {
+    // ARRANGE
+    // 1 2
+    // .*
+    const expected = '1 2\n..'
+    const gameOfLife = new GameOfLife('1 2\n.*')
+    // ACT
+    const actual = gameOfLife.next()
+    // ASSERT
+    assert.deepEqual(expected, actual)
+  })
+  it('Create Game of Life two alive', function() {
+    // ARRANGE
+    // 1 2
+    // **
+    const expected = '1 2\n..'
+    const gameOfLife = new GameOfLife('1 2\n**')
+    // ACT
+    const actual = gameOfLife.next()
+    // ASSERT
+    assert.deepEqual(expected, actual)
+  })
+
+  it('Create Game of Life three alive', function() {
+    // ARRANGE
+    // 1 3
+    // ***
+    const expected = '1 3\n.*.'
+    const gameOfLife = new GameOfLife('1 3\n***')
     // ACT
     const actual = gameOfLife.next()
     // ASSERT
