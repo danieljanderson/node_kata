@@ -6,8 +6,9 @@ class GameOfLife {
 
   next() {
     const boardLines = this.currentBoard.split('\n')
-
+    // splitting string into an array.  result [1,1][.]
     const boardSizeLine = boardLines.shift()
+    //spliting into multiple strings into an array. [1 2] becomes [1],[2]
     const boardSizeTokens = boardSizeLine.split(' ')
 
     this.resultBoard = this._checkAlive(boardSizeTokens, boardLines)
@@ -17,17 +18,17 @@ class GameOfLife {
 
   _checkAlive(boardSizeTokens, boardLines) {
     let tempBoardResult = ''
-    const y = boardSizeTokens[0]
-    const x = boardSizeTokens[1]
+    const x = boardSizeTokens[0]
+    const y = boardSizeTokens[1]
 
-    tempBoardResult = `${y} ${x}`
+    tempBoardResult = this._printBoard(x) + ' ' + this._printBoard(y)
     tempBoardResult += (boardLines[0] && `\n${boardLines[0].replace(/\*/g, '.')}`) || ''
 
     // create data structure
     const board = []
-    for (let i = 0; i < y; i++) {
+    for (let i = 0; i < x; i++) {
       const row = []
-      for (let n = 0; n < x; n++) {
+      for (let n = 0; n < y; n++) {
         const column = [boardLines[i][n]]
         row.push(column)
       }
@@ -52,6 +53,10 @@ class GameOfLife {
       return tempBoardResult
     }
     */
+  }
+  _printBoard(array) {
+    array.toString()
+    return array
   }
 }
 module.exports = GameOfLife
