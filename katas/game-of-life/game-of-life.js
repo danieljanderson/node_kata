@@ -11,52 +11,76 @@ class GameOfLife {
     //spliting into multiple strings into an array. [1 2] becomes [1],[2]
     const boardSizeTokens = boardSizeLine.split(' ')
 
-    this.resultBoard = this._checkAlive(boardSizeTokens, boardLines)
+    this.resultBoard = this._runProgram(boardSizeTokens, boardLines)
 
     return this.resultBoard
   }
 
-  _checkAlive(boardSizeTokens, boardLines) {
+  _runProgram(boardSizeTokens, boardLines) {
+    let startBoard = []
     let tempBoardResult = ''
-    const x = boardSizeTokens[0]
-    const y = boardSizeTokens[1]
 
-    tempBoardResult = this._printBoard(x) + ' ' + this._printBoard(y)
-    tempBoardResult += (boardLines[0] && `\n${boardLines[0].replace(/\*/g, '.')}`) || ''
+    // get xy
+    const x = boardSizeTokens[1]
+    const y = boardSizeTokens[0]
 
+    tempBoardResult = `${y} ${x}`
+
+    const firstLine = boardLines[0]
+
+    // TODO: make only one return
+    if (!firstLine) {
+      return tempBoardResult
+    }
+
+    // build board
+    startBoard = this._createBoard(y, x, boardLines)
+
+    // print board
+    const filteredLine = this._printBoard(startBoard)
+
+    tempBoardResult += `\n${filteredLine}`
+
+    return tempBoardResult
+  }
+
+  _printBoard(board) {
+    // apply life rules
+    board = board.toString()
+    board = board.replace(/,/g, '')
+    board = board.replace(/\*/g, '.')
+    return board
+  }
+
+  _createBoard(y, x, boardChar) {
     // create data structure
     const board = []
-    for (let i = 0; i < x; i++) {
+    for (let i = 0; i < y; i++) {
       const row = []
-      for (let n = 0; n < y; n++) {
-        const column = [boardLines[i][n]]
+      for (let n = 0; n < x; n++) {
+        const column = boardChar[i][n]
         row.push(column)
       }
       board.push(row)
     }
-
-    return tempBoardResult
-    /*
-
-    // populate data sctructure
-
-    // calculate next for each cell
-    // next == '.'
-
-    // translate into string for response
-    for (let i = 0; i <= boardSizeTokens.length - 1; i++) {
-      if (boardSizeTokens[i] === '.' || boardSizeTokens[i + 1 === '.']) {
-        tempBoardResult = '..'
-      } else {
-        tempBoardResult = '**'
-      }
-      return tempBoardResult
-    }
-    */
+    return board
   }
-  _printBoard(array) {
-    array.toString()
-    return array
+  _checkAlive(y, x, boardChar) {
+    const board = []
+    if (x === 0 && y === 0) {
+      board = []
+    } else {
+      for (let rowNumber = 0; rowNumber < x; rowNumber++) {
+        const row = []
+        for (let columnNumber = 0; columnNumber < y; columnNumber++) {
+          const image = boardChar[rowNumber][columnNumber]
+
+          row.push(image)
+        }
+        board.push(row)
+      }
+    }
+    return board
   }
 }
 module.exports = GameOfLife
