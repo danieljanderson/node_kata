@@ -21,12 +21,15 @@ class GameOfLife {
     let tempBoardResult = ''
 
     // get xy
+
     const x = boardSizeTokens[1]
     const y = boardSizeTokens[0]
 
     tempBoardResult = `${y} ${x}`
 
     const firstLine = boardLines[0]
+    // returns a data structure of 2d array
+    startBoard = this._createBoard(y, x, boardLines)
 
     // TODO: make only one return
     if (!firstLine) {
@@ -45,11 +48,74 @@ class GameOfLife {
   }
 
   _printBoard(board) {
+    let _board = ''
+    const xMax = board[0].length
+    const yMax = board.length
+
+    let y = 0
+    let x = 0
+
+    for (y; y < yMax; y++) {
+      for (x; x < xMax; x++) {
+        // _board += board[row][column]
+        /*
+        z[y+1,x+-1]   [y+1,x+0]   [y+1,x+1]
+        z[y+0,x+-1]   [y,x]       -[y+0,x+1]
+        [y+-1,x+-1]  [y+-1,x+0]  [y+-1,x+1]
+        */
+        let neighbors = 0
+        if (y + 1 < yMax && x - 1 < xMax) {
+          neighbors = board[y + 1][x - 1] === '*' ? neighbors + 1 : neighbors
+        }
+        if (y + 0 < yMax && x - 1 < xMax) {
+          neighbors = board[y][x - 1] === '*' ? neighbors + 1 : neighbors
+        }
+        if (y + 0 < yMax && x + 1 < xMax) {
+          neighbors = board[y][x + 1] === '*' ? neighbors + 1 : neighbors
+        }
+        //console.log(neighbors)
+
+        let value = '.'
+
+        if (neighbors >= 2) {
+          value = '*'
+        }
+        _board += value
+      }
+      _board += '\n'
+    }
+
+    _board = _board.trimRight('\n')
+
     // apply life rules
-    board = board.toString()
-    board = board.replace(/,/g, '')
-    board = board.replace(/\*/g, '.')
-    return board
+    /*
+    x max = x.length -1
+    y max = y.length - 1
+
+    x min = -1
+    y min = -1
+
+    given y and x
+    [y+1,x+-1]   [y+1,x+0]   [y+1,x+1]
+    [y+0,x+-1]   [y,x]       [y+0,x+1]
+    [y+-1,x+-1]  [y+-1,x+0]  [y+-1,x+1]
+
+    it = ***
+
+    loop board:
+     y = 1:
+       x = 0 (0,1):  =>  1
+         [-]   s[0,1]   n[0,2]* 
+         x dies
+       x = 1 (0, 2):  =>  2
+         [0,1]   x[0,2]   [0,3]
+         x lives
+      x = 2 (0, 3):  =>  1
+         [0,2]   x[0,3]   [-]
+         x dies
+    */
+
+    return _board
   }
 
   _createBoard(y, x, boardChar) {
@@ -62,23 +128,6 @@ class GameOfLife {
         row.push(column)
       }
       board.push(row)
-    }
-    return board
-  }
-  _checkAlive(y, x, boardChar) {
-    const board = []
-    if (x === 0 && y === 0) {
-      board = []
-    } else {
-      for (let rowNumber = 0; rowNumber < x; rowNumber++) {
-        const row = []
-        for (let columnNumber = 0; columnNumber < y; columnNumber++) {
-          const image = boardChar[rowNumber][columnNumber]
-
-          row.push(image)
-        }
-        board.push(row)
-      }
     }
     return board
   }
