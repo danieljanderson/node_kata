@@ -26,6 +26,9 @@
                 "--recursive",
                 "--exit"
             ],
+            "env": {
+                "feature_toggle": "false"
+            },
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]

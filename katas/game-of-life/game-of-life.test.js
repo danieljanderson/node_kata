@@ -126,4 +126,20 @@ describe('Game of Life', function() {
     // ASSERT
     assert.deepEqual(expected, actual)
   })
+  it('Create Game of Life dead cell becomes alive', function() {
+    // ARRANGE
+    // 2 2
+    // .*
+    // **
+
+    // **
+    // **
+
+    const expected = '2 2\n**\n**'
+    const gameOfLife = new GameOfLife('2 2\n.*\n**')
+    // ACT
+    const actual = gameOfLife.next()
+    // ASSERT
+    assert.deepEqual(expected, actual)
+  })
 })

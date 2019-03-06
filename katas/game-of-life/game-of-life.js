@@ -54,40 +54,18 @@ class GameOfLife {
 
     for (let y = 0; y < yMax; y++) {
       for (let x = 0; x < xMax; x++) {
-        // _board += board[row][column]
-        // TODO: COUNT 5 other neighbors
-        /*
-        z[y+1,x+-1]   z[y+1,x+0]   z[y+1,x+1]
-        z[y+0,x+-1]   z[y,x]       z[y+0,x+1]
-        [y+-1,x+-1]  [y+-1,x+0]   [y+-1,x+1]
-        */
-
-        /*
-             -1  0  1
-          -1  x  x  x
-           0  x  I  +
-           1  x  +  +
-
-           z[y,x]       z[y+0,x+1]
-           [y+-1,x+0]   [y+-1,x+1]
-        */
         let neighbors = 0
+        // TODO REFACTOR to use _hasNeighbor method
         if (y + 1 < yMax && x - 1 < xMax) {
           neighbors = board[y + 1][x - 1] === '*' ? neighbors + 1 : neighbors
-          console.log('this should hit first')
-          console.log('up left')
         }
         if (y + 1 < yMax) {
           if (board[y + 1][x] === '*') {
             neighbors++
           }
-          //neighbors = board[y + 1][x] === '*' ? neighbors + 1 : neighbors
-          console.log('this should hit second')
-          console.log('up middle')
         }
         if (y + 1 < yMax && x + 1 < xMax) {
           neighbors = board[y + 1][x + 1] === '*' ? neighbors + 1 : neighbors
-          console.log('up right')
         }
         if (x - 1 < xMax) {
           neighbors = board[y][x - 1] === '*' ? neighbors + 1 : neighbors
@@ -95,70 +73,24 @@ class GameOfLife {
         if (x + 1 < xMax) {
           neighbors = board[y][x + 1] === '*' ? neighbors + 1 : neighbors
         }
+
         neighbors += this._hasNeighbor(board, yMax, xMax, y - 1, x - 1)
         neighbors += this._hasNeighbor(board, yMax, xMax, y - 1, x)
         neighbors += this._hasNeighbor(board, yMax, xMax, y - 1, x + 1)
 
-        console.log(neighbors)
-        const isAlive = board[y][x] === '*'
-
-        let value = '.'
-
-        // TODO: ADD logit for neighbors gt 3 => dead
-        if (isAlive && (neighbors == 3 || neighbors == 2)) {
-          value = '*'
-        }
-        if (isAlive && neighbors > 3) {
-          value = '.'
-        }
-        _board += value
-        console.log(value)
+        const isAlive = this._isAlive(board[y][x], neighbors)
+        _board += isAlive
       }
+
       _board += '\n'
     }
 
     _board = _board.trimRight('\n')
 
-    // apply life rules
-    /*
-    x max = x.length -1
-    y max = y.length - 1
-
-    x min = -1
-    y min = -1
-
-    given y and x
-    [y+1,x+-1]   [y+1,x+0]   [y+1,x+1]
-    [y+0,x+-1]   [y,x]       [y+0,x+1]
-    [y+-1,x+-1]  [y+-1,x+0]  [y+-1,x+1]
-
-    it = ***
-
-    loop board:
-     y = 1:
-       x = 0 (0,1):  =>  1
-         [-]    [-]      [-]
-         [-]   s[0,1]   n[0,2]* 
-         [-]    [-]      [-]
-         x dies
-       x = 1 (0, 2):  =>  2
-         [-]    [-]      [-]
-         [0,1]  x[0,2]   [0,3]
-         [-]    [-]      [-]
-         x lives
-      x = 2 (0, 3):  =>  1
-         [-]     [-]     [-]
-         [0,2]  x[0,3]   [-]
-         [-]     [-]     [-]
-         x dies
-    */
-
     return _board
   }
 
   _createBoard(y, x, boardChar) {
-    // create data structure
-    //TODO figure out why it isnt getting pushed right.
     const board = []
     for (let i = 0; i < y; i++) {
       const row = []
@@ -179,6 +111,23 @@ class GameOfLife {
       }
     }
     return neighbor
+  }
+
+  _isAlive(cell, neighbors) {
+    // TODO: function for setAlive
+    const isAlive = cell === '*'
+    let value = '.'
+    if (isAlive && (neighbors == 3 || neighbors == 2)) {
+      value = '*'
+    }
+    if (isAlive && neighbors > 3) {
+      value = '.'
+    }
+    if (!isAlive && neighbors == 3) {
+      value = '*'
+    }
+
+    return value
   }
 }
 module.exports = GameOfLife
