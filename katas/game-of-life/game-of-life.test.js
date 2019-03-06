@@ -110,4 +110,20 @@ describe('Game of Life', function() {
     // ASSERT
     assert.deepEqual(expected, actual)
   })
+  it('Create Game of Life two alive', function() {
+    // ARRANGE
+    // 2 3
+    // ***
+    // ***
+
+    // *.*
+    // *.*
+
+    const expected = '2 3\n*.*\n*.*'
+    const gameOfLife = new GameOfLife('2 3\n***\n***')
+    // ACT
+    const actual = gameOfLife.next()
+    // ASSERT
+    assert.deepEqual(expected, actual)
+  })
 })
