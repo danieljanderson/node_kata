@@ -6,9 +6,7 @@ class GameOfLife {
 
   next() {
     const boardLines = this.currentBoard.split('\n')
-    // splitting string into an array.  result [1,1][.]
     const boardSizeLine = boardLines.shift()
-    //spliting into multiple strings into an array. [1 2] becomes [1],[2]
     const boardSizeTokens = boardSizeLine.split(' ')
 
     this.resultBoard = this._runProgram(boardSizeTokens, boardLines)
@@ -56,24 +54,12 @@ class GameOfLife {
       for (let x = 0; x < xMax; x++) {
         let neighbors = 0
         // TODO REFACTOR to use _hasNeighbor method
-        if (y + 1 < yMax && x - 1 < xMax) {
-          neighbors = board[y + 1][x - 1] === '*' ? neighbors + 1 : neighbors
-        }
-        if (y + 1 < yMax) {
-          if (board[y + 1][x] === '*') {
-            neighbors++
-          }
-        }
-        if (y + 1 < yMax && x + 1 < xMax) {
-          neighbors = board[y + 1][x + 1] === '*' ? neighbors + 1 : neighbors
-        }
-        if (x - 1 < xMax) {
-          neighbors = board[y][x - 1] === '*' ? neighbors + 1 : neighbors
-        }
-        if (x + 1 < xMax) {
-          neighbors = board[y][x + 1] === '*' ? neighbors + 1 : neighbors
-        }
 
+        neighbors += this._hasNeighbor(board, yMax, xMax, y + 1, x - 1)
+        neighbors += this._hasNeighbor(board, yMax, xMax, y + 1, x)
+        neighbors += this._hasNeighbor(board, yMax, xMax, y + 1, x + 1)
+        neighbors += this._hasNeighbor(board, yMax, xMax, y, x - 1)
+        neighbors += this._hasNeighbor(board, yMax, xMax, y, x + 1)
         neighbors += this._hasNeighbor(board, yMax, xMax, y - 1, x - 1)
         neighbors += this._hasNeighbor(board, yMax, xMax, y - 1, x)
         neighbors += this._hasNeighbor(board, yMax, xMax, y - 1, x + 1)
