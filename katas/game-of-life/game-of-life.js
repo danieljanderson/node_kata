@@ -53,8 +53,6 @@ class GameOfLife {
     for (let y = 0; y < yMax; y++) {
       for (let x = 0; x < xMax; x++) {
         let neighbors = 0
-        // TODO REFACTOR to use _hasNeighbor method
-
         neighbors += this._hasNeighbor(board, yMax, xMax, y + 1, x - 1)
         neighbors += this._hasNeighbor(board, yMax, xMax, y + 1, x)
         neighbors += this._hasNeighbor(board, yMax, xMax, y + 1, x + 1)
