@@ -5,11 +5,11 @@ class HashtoString {
   }
 
   convert() {
-    const orginalString = 'acegikoprs'
-    const sipher = 675217408078
-    this.sipher = this._hashToString(sipher)
+    const sipherNumbers = '675217408078'
+    this.sipher = this._hashToString(sipherNumbers)
   }
-  _hashToString(sipherText, letters) {
+  gen_hash(sipherNumbers) {
+    const orginalString = 'acegikoprs'
     const hex = 7
     for (let i = 0; i < letters.length; i++) {
       hex = hex * 37 + letters.indexOf(sipherText[i])
@@ -17,4 +17,4 @@ class HashtoString {
     return hex
   }
 }
-module.exports = GameOfLife
+module.exports = HashtoString

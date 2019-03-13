@@ -23,7 +23,7 @@ S - Simple
 */
 
 const assert = require('assert')
-const GameOfLife = require('./hash')
+const Hash = require('./hash')
 
 // #ZOMBIES
 
@@ -36,7 +36,7 @@ describe('first hash', function() {
 
     // ARRANGE
     const expected = 7
-    const gameOfLife = new Hash(0)
+    const hashProgram = new Hash(0)
     // ACT
     const actual = HashtoString.convert()
     // ASSERT
