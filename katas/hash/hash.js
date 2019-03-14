@@ -1,18 +1,35 @@
+const sipherString = 'acegikoprs'
+
 class HashtoString {
-  constructor(currentBoard) {
-    this.currentBoard = currentBoard
-    this.string = ''
-  }
+  constructor() {}
 
   convert() {
-    const sipherNumbers = '675217408078'
-    this.sipher = this._hashToString(sipherNumbers)
+    const sipherNumbers = 675217408078
+    this.sipher = this.gen_hash(sipherNumbers)
+
+    // 7 permutations of dividing [37-46]
+
+    // print [a-s][a-s][a-s]
+    // TODO: implement to 7 deep
+    for (let a of sipherString) {
+      for (let b of sipherString) {
+        for (let c of sipherString) {
+          console.log(a + b + c)
+
+          if (this.gen_hash(a + b + c) === sipherNumbers) {
+            return a + b + c
+          }
+        }
+      }
+    }
   }
-  gen_hash(sipherNumbers) {
-    const orginalString = 'acegikoprs'
-    const hex = 7
-    for (let i = 0; i < letters.length; i++) {
-      hex = hex * 37 + letters.indexOf(sipherText[i])
+
+  // TODO: get other examples working
+  // unit test and walk through a few more examples
+  gen_hash(hashString) {
+    let hex = 7
+    for (let i = 0; i < hashString.length; i++) {
+      hex = hex * 37 + hashString.indexOf(sipherString[i])
     }
     return hex
   }

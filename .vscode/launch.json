@@ -22,7 +22,7 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceFolder}/katas/minesweeper",
+                "${workspaceFolder}/katas/Hash",
                 "--recursive",
                 "--exit"
             ],

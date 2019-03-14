@@ -23,7 +23,7 @@ S - Simple
 */
 
 const assert = require('assert')
-const Hash = require('./hash')
+const HashtoString = require('./hash')
 
 // #ZOMBIES
 
@@ -36,9 +36,27 @@ describe('first hash', function() {
 
     // ARRANGE
     const expected = 7
-    const hashProgram = new Hash(0)
+    const hashProgram = new HashtoString()
     // ACT
-    const actual = HashtoString.convert()
+    const actual = hashProgram.gen_hash('')
+    // ASSERT
+    assert.deepEqual(expected, actual)
+  })
+  it('one letter', function() {
+    // ARRANGE
+    const expected = 259
+    const hashProgram = new HashtoString()
+    // ACT
+    const actual = hashProgram.gen_hash('a')
+    // ASSERT
+    assert.deepEqual(expected, actual)
+  })
+  it('example that they gave me', function() {
+    // ARRANGE
+    const expected = 677850704066
+    const hashProgram = new HashtoString()
+    // ACT
+    const actual = hashProgram.gen_hash('kppracg')
     // ASSERT
     assert.deepEqual(expected, actual)
   })
