@@ -5,9 +5,6 @@ class HashtoString {
 
   convert() {
     const sipherNumbers = 675217408078
-    this.sipher = this.gen_hash(sipherNumbers)
-
-    // 7 permutations of dividing [37-46]
 
     // print [a-s][a-s][a-s]
     // TODO: implement to 7 deep
@@ -27,9 +24,9 @@ class HashtoString {
   // TODO: get other examples working
   // unit test and walk through a few more examples
   gen_hash(hashString) {
-    let hex = 7
+    var hex = 7
     for (let i = 0; i < hashString.length; i++) {
-      hex = hex * 37 + hashString.indexOf(sipherString[i])
+      hex = hex * 37 + sipherString.indexOf(hashString[i])
     }
     return hex
   }
