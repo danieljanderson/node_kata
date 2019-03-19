@@ -4,17 +4,24 @@ class HashtoString {
   constructor() {}
 
   convert() {
-    const sipherNumbers = 675217408078
+    const sipherNumbers = 677850704066
 
     // print [a-s][a-s][a-s]
     // TODO: implement to 7 deep
     for (let a of sipherString) {
       for (let b of sipherString) {
         for (let c of sipherString) {
-          console.log(a + b + c)
-
-          if (this.gen_hash(a + b + c) === sipherNumbers) {
-            return a + b + c
+          for (let d of sipherString) {
+            for (let e of sipherString) {
+              for (let f of sipherString) {
+                for (let g of sipherString) {
+                  if (this.gen_hash(a + b + c + d + e + f + g) === sipherNumbers) {
+                    console.log(a + b + c + d + e + f + g)
+                    return a + b + c + d + e + f + g
+                  }
+                }
+              }
+            }
           }
         }
       }

@@ -51,12 +51,21 @@ describe('first hash', function() {
     // ASSERT
     assert.deepEqual(expected, actual)
   })
-  it('example that they gave me', function() {
+  it('number that they gave me', function() {
     // ARRANGE
     const expected = 677850704066
     const hashProgram = new HashtoString()
     // ACT
     const actual = hashProgram.gen_hash('kppracg')
+    // ASSERT
+    assert.deepEqual(expected, actual)
+  })
+  it('word that they gave me', function() {
+    // ARRANGE
+    const expected = 'kppracg'
+    const hashProgram = new HashtoString()
+    // ACT
+    const actual = hashProgram.convert('acegikoprs')
     // ASSERT
     assert.deepEqual(expected, actual)
   })
