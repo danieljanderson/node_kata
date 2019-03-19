@@ -4,7 +4,7 @@ class HashtoString {
   constructor() {}
 
   convert() {
-    const sipherNumbers = 677850704066
+    const sipherNumbers = 675217408078
 
     // print [a-s][a-s][a-s]
     // TODO: implement to 7 deep
@@ -38,4 +38,7 @@ class HashtoString {
     return hex
   }
 }
+const hashProgram = new HashtoString()
+const actual = hashProgram.convert('acegikoprs')
+console.log(actual)
 module.exports = HashtoString
