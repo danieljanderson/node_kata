@@ -6,8 +6,6 @@ class HashtoString {
   convert() {
     const sipherNumbers = 675217408078
 
-    // print [a-s][a-s][a-s]
-    // TODO: implement to 7 deep
     for (let a of sipherString) {
       for (let b of sipherString) {
         for (let c of sipherString) {
@@ -28,7 +26,6 @@ class HashtoString {
     }
   }
 
-  // TODO: get other examples working
   // unit test and walk through a few more examples
   gen_hash(hashString) {
     var hex = 7
