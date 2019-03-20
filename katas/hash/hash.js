@@ -38,7 +38,5 @@ class HashtoString {
     return hex
   }
 }
-const hashProgram = new HashtoString()
-const actual = hashProgram.convert('acegikoprs')
-console.log(actual)
+
 module.exports = HashtoString

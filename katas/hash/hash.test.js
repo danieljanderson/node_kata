@@ -51,7 +51,7 @@ describe('first hash', function() {
     // ASSERT
     assert.deepEqual(expected, actual)
   })
-  it('number that they gave me', function() {
+  it('solution that they gave me', function() {
     // ARRANGE
     const expected = 677850704066
     const hashProgram = new HashtoString()
@@ -60,13 +60,12 @@ describe('first hash', function() {
     // ASSERT
     assert.deepEqual(expected, actual)
   })
-  it('word that they gave me', function() {
+  it('number that they gave me to find a string', function() {
     // ARRANGE
-    const expected = 'kppracg'
     const hashProgram = new HashtoString()
     // ACT
-    const actual = hashProgram.convert('acegikoprs')
+    const actual = hashProgram.convert()
     // ASSERT
-    assert.deepEqual(expected, actual)
+    assert.notEqual(null, actual)
   })
 })
